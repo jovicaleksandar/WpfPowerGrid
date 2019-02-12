@@ -1,0 +1,22 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        xmlns:gmf="clr-namespace:GMap.NET.WindowsForms;assembly=GMap.NET.WindowsForms"
+        xmlns:gm="clr-namespace:GMap.NET;assembly=GMap.NET.Core"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="550" Width="800">
+    <Grid>
+        <WindowsFormsHost Margin="10,10,190,10">
+            <gmf:GMapControl x:Name="gmap" Zoom="12" CanDragMap="True" MarkersEnabled="True" PolygonsEnabled="False" MaxZoom="18" MinZoom="1" RoutesEnabled="True"/>
+        </WindowsFormsHost>
+        <GridSplitter HorizontalAlignment="Left" Height="499" Margin="10,10,0,0" VerticalAlignment="Top" Width="592"/>
+        <CheckBox Content="Subtations" HorizontalAlignment="Left" Margin="652,17,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked_3"/>
+        <CheckBox Content="Nodes" HorizontalAlignment="Left" Margin="652,60,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_1" Unchecked="CheckBox_Unchecked_2"/>
+        <CheckBox Content="Switches" HorizontalAlignment="Left" Margin="652,105,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked_2" Unchecked="CheckBox_Unchecked"/>
+        <CheckBox Content="Lines" HorizontalAlignment="Left" Margin="652,149,0,0" VerticalAlignment="Top" Unchecked="CheckBox_Unchecked_1" Checked="CheckBox_Checked_3"/>
+    </Grid>
+</Window>
