@@ -31,6 +31,7 @@ namespace Client
         GMapOverlay markersSwitchEntity = new GMapOverlay("markersSwitchEntity");
         GMapOverlay markersLinesEntity = new GMapOverlay("markersLinesEntity");
         GMapOverlay routes = new GMapOverlay("routes");
+        GMapOverlay polygons = new GMapOverlay("polygons");
         List<PointLatLng> points = new List<PointLatLng>();
         List<PointLatLng> points2 = new List<PointLatLng>();
         public MainWindow()
@@ -57,6 +58,7 @@ namespace Client
             gmap.Overlays.Add(markersNodeEntity);
             gmap.Overlays.Add(markersSwitchEntity);
             gmap.Overlays.Add(routes);
+            gmap.Overlays.Add(polygons);
         }
 
         private void ToLatLon(double utmX, double utmY, int zoneUTM, out double latitude, out double longitude)
@@ -102,8 +104,7 @@ namespace Client
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            GMapMarker marker; //= new GMarkerGoogle(new PointLatLng(45.25116, 19.823758), GMarkerGoogleType.green);/
-            //GMapOverlay routes = new GMapOverlay("routes");
+            GMapMarker marker;
 
             double latitude;
             double longitude;
@@ -119,13 +120,11 @@ namespace Client
 
         private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
         {
-            GMapMarker marker; //= new GMarkerGoogle(new PointLatLng(45.25116, 19.823758), GMarkerGoogleType.green);/
-            //GMapOverlay routes = new GMapOverlay("routes");
+            GMapMarker marker;
 
             double latitude;
             double longitude;
-
-            //if (CheckBox_Checked_1.)
+            
             foreach (NodeEntity se in Lists.Nodes)
             {
                 ToLatLon(Double.Parse(se.X), Double.Parse(se.Y), 34, out latitude, out longitude);
@@ -137,8 +136,7 @@ namespace Client
 
         private void CheckBox_Checked_2(object sender, RoutedEventArgs e)
         {
-            GMapMarker marker; //= new GMarkerGoogle(new PointLatLng(45.25116, 19.823758), GMarkerGoogleType.green);/
-            //GMapOverlay routes = new GMapOverlay("routes");
+            GMapMarker marker;
 
             double latitude;
             double longitude;
@@ -156,20 +154,25 @@ namespace Client
         {
             double latitude;
             double longitude;
+            List<PointLatLng> points = new List<PointLatLng>();
             Lists.Lines.ForEach(x =>
             {
                 x.Vertice.Points.ForEach(y =>
                 {
                     ToLatLon(Double.Parse(y.X), Double.Parse(y.Y), 34, out latitude, out longitude);
                     points.Add(new PointLatLng(latitude, longitude));
+                    GMapPolygon polygon = new GMapPolygon(points, "");
+                    polygon.Fill = new SolidBrush(System.Drawing.Color.Transparent);
+                    polygon.Stroke = new System.Drawing.Pen(System.Drawing.Color.Blue, 1);
+                    polygons.Polygons.Add(polygon);
                 });
+                points.Clear();
             });
+            //var route = GoogleMapProvider.Instance.GetRoute(points[0], points[10], false, false, 12);
+            //var r = new GMapRoute(points, "routes");
+            //r.Stroke = new Pen(Color.Blue, 1);
 
-            var route = GoogleMapProvider.Instance.GetRoute(points[0], points[10], false, false, 12);
-            var r = new GMapRoute(points, "routes");
-            r.Stroke = new Pen(Color.Blue, 1);
-
-            routes.Routes.Add(r);
+            //routes.Routes.Add(r);
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)

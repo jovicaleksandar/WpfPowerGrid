@@ -11,7 +11,7 @@
         Title="MainWindow" Height="550" Width="800">
     <Grid>
         <WindowsFormsHost Margin="10,10,190,10">
-            <gmf:GMapControl x:Name="gmap" Zoom="12" CanDragMap="True" MarkersEnabled="True" PolygonsEnabled="False" MaxZoom="18" MinZoom="1" RoutesEnabled="True"/>
+            <gmf:GMapControl x:Name="gmap" Zoom="12" CanDragMap="True" MarkersEnabled="True" PolygonsEnabled="True" MaxZoom="18" MinZoom="1" RoutesEnabled="True"/>
         </WindowsFormsHost>
         <GridSplitter HorizontalAlignment="Left" Height="499" Margin="10,10,0,0" VerticalAlignment="Top" Width="592"/>
         <CheckBox Content="Subtations" HorizontalAlignment="Left" Margin="652,17,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked_3"/>
